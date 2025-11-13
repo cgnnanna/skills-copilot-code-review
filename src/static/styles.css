@@ -141,21 +141,33 @@ body {
   }
 }
 
+/* Priority-based styling for announcements */
+.announcement-banner.priority-high {
+  background: linear-gradient(135deg, var(--error) 0%, #c62828 100%);
+}
+
+.announcement-banner.priority-medium {
+  background: linear-gradient(135deg, var(--info) 0%, var(--primary) 100%);
+}
+
+.announcement-banner.priority-low {
+  background: linear-gradient(135deg, var(--success) 0%, #388e3c 100%);
+}
+
 /* Responsive design for announcement banner */
 @media (max-width: 768px) {
   .announcement-content {
     gap: 8px;
   }
-
+  
   .announcement-text {
     font-size: 0.9rem;
   }
-
+  
   .announcement-icon {
     font-size: 1.1em;
   }
 }
-
 header {
   text-align: center;
   padding: 12px 0;
@@ -772,5 +784,207 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
 
+/* Announcement Management Modal */
+.announcement-modal-content {
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.announcement-form-section {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.announcements-list-section h4 {
+  margin-bottom: 15px;
+  color: var(--text-primary);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--border);
+  color: var(--text-primary);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-focus);
+}
+
+.announcements-list {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.announcement-item {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: var(--surface);
+  transition: box-shadow 0.2s;
+}
+
+.announcement-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.announcement-item:last-child {
+  margin-bottom: 0;
+}
+
+.announcement-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.announcement-item-title {
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+}
+
+.announcement-item-priority {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+
+.announcement-item-priority.high {
+  background-color: var(--error-light);
+  color: var(--error);
+}
+
+.announcement-item-priority.medium {
+  background-color: var(--info-light);
+  color: var(--info);
+}
+
+.announcement-item-priority.low {
+  background-color: var(--success-light);
+  color: var(--success);
+}
+
+.announcement-item-message {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.announcement-item-dates {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.announcement-item-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-small {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+}
+
+.btn-edit {
+  background-color: var(--warning);
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e68900;
+}
+
+.btn-delete {
+  background-color: var(--error);
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #b71c1c;
+}
+
+.btn-toggle {
+  background-color: var(--success);
+  color: white;
+}
+
+.btn-toggle:hover {
+  background-color: #2e7d32;
+}
+
+.btn-toggle.inactive {
+  background-color: var(--border);
+  color: var(--text-secondary);
+}
+
+/* Responsive design for announcement management */
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .announcement-modal-content {
+    max-width: 95vw;
+    padding: 15px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .announcement-item-actions {
+    flex-wrap: wrap;
+  }
 }

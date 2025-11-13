@@ -10,6 +10,7 @@ client = MongoClient('mongodb://localhost:27017/')
 db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
+announcements_collection = db['announcements']
 
 # Methods
 
@@ -49,6 +50,11 @@ def init_database():
         for teacher in initial_teachers:
             teachers_collection.insert_one(
                 {"_id": teacher["username"], **teacher})
+
+    # Initialize announcements if empty
+    if announcements_collection.count_documents({}) == 0:
+        for announcement in initial_announcements:
+            announcements_collection.insert_one(announcement)
 
 
 # Initial database if empty
@@ -205,5 +211,28 @@ initial_teachers = [
         "display_name": "Principal Martinez",
         "password": hash_password("admin789"),
         "role": "admin"
+    }
+]
+
+initial_announcements = [
+    {
+        "title": "Winter Break Activity Registration",
+        "message": "Winter Break Activity Registration opens December 1st! Don't miss out on exciting holiday programs and workshops. Sign up early as spots are limited.",
+        "priority": "high",
+        "start_date": "2025-11-13",
+        "end_date": "2025-12-15",
+        "created_by": "principal",
+        "created_at": "2025-11-13T10:00:00Z",
+        "is_active": True
+    },
+    {
+        "title": "Science Fair Submissions Due",
+        "message": "All science fair project submissions are due by December 20th. Don't forget to include your research documentation and presentation materials.",
+        "priority": "medium",
+        "start_date": "2025-11-20",
+        "end_date": "2025-12-20",
+        "created_by": "mchen",
+        "created_at": "2025-11-13T09:30:00Z",
+        "is_active": True
     }
 ]
