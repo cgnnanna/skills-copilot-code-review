@@ -10,8 +10,7 @@
 </head>
 
 <body>
-
-    📢 Activity registration is open until the end of the month. Don't miss your spot!
+  <header>
     <h1>Mergington High School</h1>
     <h2>Extracurricular Activities</h2>
     <div id="user-controls">
@@ -22,6 +21,10 @@
         </button>
         <div id="user-info" class="hidden">
           <span id="display-name"></span>
+          <button id="manage-announcements" class="icon-button" title="Manage Announcements">
+            <span class="announcement-manage-icon">📢</span>
+            <span>Manage</span>
+          </button>
           <button id="logout-button">Logout</button>
         </div>
       </div>
@@ -144,6 +147,61 @@
         <button type="submit">Login</button>
       </form>
       <div id="login-message" class="hidden message"></div>
+    </div>
+  </div>
+
+  <!-- Announcement Management Modal -->
+  <div id="announcement-modal" class="modal hidden">
+    <div class="modal-content announcement-modal-content">
+      <span class="close-announcement-modal">&times;</span>
+      <h3>Manage Announcements</h3>
+      
+      <!-- Add New Announcement Form -->
+      <div class="announcement-form-section">
+        <h4>Add New Announcement</h4>
+        <form id="announcement-form">
+          <div class="form-group">
+            <label for="announcement-title">Title:</label>
+            <input type="text" id="announcement-title" required placeholder="Announcement title" />
+          </div>
+          <div class="form-group">
+            <label for="announcement-message">Message:</label>
+            <textarea id="announcement-message" required placeholder="Announcement message" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="announcement-priority">Priority:</label>
+              <select id="announcement-priority" required>
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="announcement-start-date">Start Date (Optional):</label>
+              <input type="date" id="announcement-start-date" />
+            </div>
+            <div class="form-group">
+              <label for="announcement-end-date">End Date:</label>
+              <input type="date" id="announcement-end-date" required />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Add Announcement</button>
+            <button type="button" id="cancel-announcement" class="btn-secondary">Cancel</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Existing Announcements List -->
+      <div class="announcements-list-section">
+        <h4>Existing Announcements</h4>
+        <div id="announcements-list" class="announcements-list">
+          <p class="loading">Loading announcements...</p>
+        </div>
+      </div>
+      
+      <div id="announcement-management-message" class="hidden message"></div>
     </div>
   </div>
 
