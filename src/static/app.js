@@ -44,6 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Authentication state
   let currentUser = null;
 
+  // Announcement banner elements
+  const announcementBanner = document.getElementById("announcement-banner");
+  const closeBannerButton = document.getElementById("close-banner");
+
   // Time range mappings for the dropdown
   const timeRanges = {
     morning: { start: "06:00", end: "08:00" }, // Before school hours
@@ -234,10 +238,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
+  function closeBanner() {
+    if (announcementBanner) {
+      announcementBanner.classList.add("closing");
+      setTimeout(() => {
+        announcementBanner.style.display = "none";
+        // Store in localStorage so it stays closed
+        localStorage.setItem("announcementBannerClosed", "true");
+      }, 300);
+    }
+  }
+
   // Event listeners for authentication
   loginButton.addEventListener("click", openLoginModal);
   logoutButton.addEventListener("click", logout);
   closeLoginModal.addEventListener("click", closeLoginModalHandler);
+
+  // Event listener for announcement banner
+  closeBannerButton.addEventListener("click", closeBanner);
 
   // Close login modal when clicking outside
   window.addEventListener("click", (event) => {
@@ -861,8 +879,17 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeRangeFilter,
   };
 
+  // Check if announcement banner should be hidden
+  function initializeBanner() {
+    const bannerClosed = localStorage.getItem("announcementBannerClosed");
+    if (bannerClosed === "true" && announcementBanner) {
+      announcementBanner.style.display = "none";
+    }
+  }
+
   // Initialize app
   checkAuthentication();
   initializeFilters();
+  initializeBanner();
   fetchActivities();
 });

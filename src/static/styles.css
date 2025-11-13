@@ -50,6 +50,112 @@ body {
   font-size: 0.9rem;
 }
 
+/* Announcement Banner */
+.announcement-banner {
+  background: linear-gradient(135deg, var(--info) 0%, var(--primary) 100%);
+  color: white;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.5s ease-out;
+}
+
+.announcement-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 100%;
+}
+
+.announcement-icon {
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+.announcement-text {
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.announcement-text strong {
+  font-weight: bold;
+}
+
+.close-banner {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.close-banner:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.close-banner:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.announcement-banner.closing {
+  animation: slideUp 0.3s ease-in forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+    max-height: 100px;
+  }
+
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
+    padding: 0;
+  }
+}
+
+/* Responsive design for announcement banner */
+@media (max-width: 768px) {
+  .announcement-content {
+    gap: 8px;
+  }
+
+  .announcement-text {
+    font-size: 0.9rem;
+  }
+
+  .announcement-icon {
+    font-size: 1.1em;
+  }
+}
+
 header {
   text-align: center;
   padding: 12px 0;
@@ -129,7 +235,8 @@ section h3 {
   }
 
   .sidebar-filters {
-    width: 200px; /* Reduced from 250px to 200px to make the sidebar narrower */
+    width: 200px;
+    /* Reduced from 250px to 200px to make the sidebar narrower */
     position: sticky;
     top: 15px;
     max-height: calc(100vh - 30px);
@@ -361,12 +468,10 @@ button {
 .skeleton-line {
   height: 10px;
   margin-bottom: 8px;
-  background: linear-gradient(
-    90deg,
-    var(--border-light) 25%,
-    var(--border) 50%,
-    var(--border-light) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--border-light) 25%,
+      var(--border) 50%,
+      var(--border-light) 75%);
   background-size: 200% 100%;
   border-radius: 3px;
   animation: shimmer 1.5s infinite;
@@ -390,6 +495,7 @@ button {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -485,7 +591,8 @@ footer {
 
 .search-box input {
   flex: 1;
-  min-width: 0; /* Add this to prevent input from overflowing */
+  min-width: 0;
+  /* Add this to prevent input from overflowing */
   padding: 6px 10px;
   border: 1px solid var(--border);
   border-right: none;
@@ -502,8 +609,10 @@ footer {
 
 .search-box button {
   width: 36px;
-  height: 100%; /* Make button match input height */
-  min-height: 32px; /* Ensure minimum clickable area */
+  height: 100%;
+  /* Make button match input height */
+  min-height: 32px;
+  /* Ensure minimum clickable area */
   background: var(--primary);
   color: white;
   border: none;
@@ -663,4 +772,5 @@ footer {
 
 #logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
+
 }
